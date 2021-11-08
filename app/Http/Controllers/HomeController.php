@@ -49,7 +49,7 @@ class HomeController extends Controller
     {
         $post = APIURL::postDetail($id);
         $postComments = APIURL::postComment($id);
-        // dd($post);
+
         $data = [
             'post' => reset($post),
             'postComments' => $postComments
