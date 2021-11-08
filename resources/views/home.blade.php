@@ -29,9 +29,9 @@
                     </div>
                     <div class="card-footer">
                         <a href="{{ route('detail', $item['id']) }}" class="btn btn-primary">Go somewhere</a>
-                        <p>
+                        {{-- <p>
                             Total Comment : {{ APIURL::countComment($item['id']) }}
-                        </p>
+                        </p> --}}
                     </div>
                   </div>
             </div>

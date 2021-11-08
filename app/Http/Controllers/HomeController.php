@@ -25,12 +25,21 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $posts = APIURL::post();
-        $comments = APIURL::comment();
-        
+        $client = new Client();
+        $posts = $client->get(env('API_URL'). 'posts')->getBody();
+
+        $posts = json_decode($posts, true);
+
+        $comments =  $client->get(env('API_URL'). 'comments')->getBody();
+
+        $comments = json_decode($comments, true);
+
+        ##  OLD (LONG RESPONSE)  ##
+        // $posts = APIURL::post();
+        // $comments = APIURL::comment();
+
         $data = [
-            'posts' => $posts,
-            'countComment' => count($comments)
+            'posts' => $posts
         ];
 
         return view('home', $data);
@@ -40,9 +49,9 @@ class HomeController extends Controller
     {
         $post = APIURL::postDetail($id);
         $postComments = APIURL::postComment($id);
-
+        // dd($post);
         $data = [
-            'post' => $post[0],
+            'post' => reset($post),
             'postComments' => $postComments
         ];
 
