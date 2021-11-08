@@ -27,15 +27,7 @@ class HomeController extends Controller
     {
         $posts = APIURL::post();
         $comments = APIURL::comment();
-
-        $getPosts = array_filter($posts,function($v,$k) {
-            return $v['userId'] == 1;
-        },ARRAY_FILTER_USE_BOTH); // With latest PHP third parameter is optional.. Available Values:- ARRAY_FILTER_USE_BOTH OR ARRAY_FILTER_USE_KEY
-
-        $getComments = array_filter($comments,function($v,$k) {
-            return $v['postId'] == 1;
-        },ARRAY_FILTER_USE_BOTH); // With latest PHP third parameter is optional.. Available Values:- ARRAY_FILTER_USE_BOTH OR ARRAY_FILTER_USE_KEY
-
+        
         $data = [
             'posts' => $posts,
             'countComment' => count($comments)
